@@ -58,53 +58,55 @@
   }
 }
 
-/* Game Board Styles */
-.game-board {
-  @apply grid gap-2 p-4;
+@layer components {
+  .game-board {
+    @apply grid gap-2 p-4;
+  }
+
+  .letter-tile {
+    @apply flex items-center justify-center w-14 h-14 text-2xl font-bold border-2 rounded-lg transition-all duration-300;
+  }
+
+  .letter-tile-correct {
+    @apply bg-green-500 text-white border-green-600;
+  }
+
+  .letter-tile-present {
+    @apply bg-yellow-500 text-white border-yellow-600;
+  }
+
+  .letter-tile-absent {
+    @apply bg-gray-500 text-white border-gray-600;
+  }
+
+  .letter-tile-empty {
+    @apply bg-transparent border-gray-300 dark:border-gray-700;
+  }
+
+  .keyboard {
+    @apply grid gap-2 p-4 w-full max-w-3xl mx-auto;
+  }
+
+  .keyboard-key {
+    @apply flex items-center justify-center h-14 px-3 text-base font-semibold rounded-lg 
+           bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 
+           transition-colors duration-200 cursor-pointer select-none min-w-[2.5rem]
+           active:scale-95 active:bg-gray-400 dark:active:bg-gray-600;
+  }
 }
 
-.letter-tile {
-  @apply flex items-center justify-center w-14 h-14 text-2xl font-bold border-2 rounded-lg transition-all duration-300;
-}
+@layer utilities {
+  .pop {
+    animation: pop 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  }
 
-.letter-tile-correct {
-  @apply bg-green-500 text-white border-green-600;
-}
+  .shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  }
 
-.letter-tile-present {
-  @apply bg-yellow-500 text-white border-yellow-600;
-}
-
-.letter-tile-absent {
-  @apply bg-gray-500 text-white border-gray-600;
-}
-
-.letter-tile-empty {
-  @apply bg-transparent border-gray-300 dark:border-gray-700;
-}
-
-/* Keyboard Styles */
-.keyboard {
-  @apply grid gap-1.5 p-4;
-}
-
-.keyboard-key {
-  @apply flex items-center justify-center px-2 py-4 text-sm font-semibold rounded-lg 
-         bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 
-         transition-colors duration-200 cursor-pointer select-none;
-}
-
-/* Animation Classes */
-.pop {
-  animation: pop 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-}
-
-.shake {
-  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
-}
-
-.bounce {
-  animation: bounce 0.5s cubic-bezier(0.36, 0, 0.66, -0.56) both;
+  .bounce {
+    animation: bounce 0.5s cubic-bezier(0.36, 0, 0.66, -0.56) both;
+  }
 }
 
 @keyframes pop {

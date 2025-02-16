@@ -19,11 +19,19 @@ interface KeyboardProps {
   };
 }
 
-export function Keyboard({ onKeyPress, usedLetters = { correct: new Set(), present: new Set(), absent: new Set() } }: KeyboardProps) {
+export function Keyboard({ 
+  onKeyPress, 
+  usedLetters = { 
+    correct: new Set(), 
+    present: new Set(), 
+    absent: new Set() 
+  } 
+}: KeyboardProps) {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       const key = e.key.toUpperCase();
       if (key === 'ENTER' || key === 'BACKSPACE' || /^[A-Z]$/.test(key)) {
+        e.preventDefault();
         onKeyPress(key);
       }
     }
@@ -54,14 +62,16 @@ export function Keyboard({ onKeyPress, usedLetters = { correct: new Set(), prese
                 onClick={() => onKeyPress(key)}
                 className={cn(
                   'keyboard-key',
-                  key === 'ENTER' && 'col-span-2',
-                  key === 'BACKSPACE' && 'col-span-2',
+                  key === 'ENTER' && 'col-span-2 min-w-[4rem]',
+                  key === 'BACKSPACE' && 'col-span-2 min-w-[4rem]',
                   {
                     'bg-green-500 text-white hover:bg-green-600': status === 'correct',
                     'bg-yellow-500 text-white hover:bg-yellow-600': status === 'present',
                     'bg-gray-500 text-white hover:bg-gray-600': status === 'absent',
                   }
                 )}
+                type="button"
+                aria-label={key === 'BACKSPACE' ? 'Delete' : key}
               >
                 {key === 'BACKSPACE' ? '⌫' : key}
               </button>

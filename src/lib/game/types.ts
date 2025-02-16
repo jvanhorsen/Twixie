@@ -18,6 +18,7 @@ export type GameState = {
 export type GuessResult = {
   correct: boolean;
   positions: ('correct' | 'present' | 'absent')[];
+  error?: string;
 };
 
 export type GameStats = {
